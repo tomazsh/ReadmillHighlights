@@ -1,0 +1,3 @@
+[submodule "Vendor/Readmill"]
+	path = Vendor/Readmill
+	url = https://github.com/tomazsh/ios-wrapper.git
