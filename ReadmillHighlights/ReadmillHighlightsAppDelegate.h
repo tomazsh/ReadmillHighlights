@@ -10,12 +10,29 @@
 
 @class ReadmillHighlightsViewController;
 
+/**
+ The ReadmillHighlightsAppDelegate app delegate
+ */
 @interface ReadmillHighlightsAppDelegate : UIResponder <UIApplicationDelegate, ReadmillUserAuthenticationDelegate>
 
+/**
+ Redirect URL for the OAuth authentication.
+ */
 @property(readonly, nonatomic) NSURL *redirectURL;
+
+/**
+ Readmill API configuration.
+ */
 @property(readonly, nonatomic) ReadmillAPIConfiguration *apiConfiguration;
 
+/**
+ Application's key window.
+ */
 @property(nonatomic) UIWindow *window;
+
+/**
+ A `ReadmillHighlightsViewController` instance that represents the root view controller.
+ */
 @property(nonatomic) ReadmillHighlightsViewController *highlightsViewController;
 
 @end

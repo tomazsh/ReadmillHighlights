@@ -24,6 +24,7 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
                                                             nil, ReadmillHighlightsUserCredentialsKey, nil]];
     
+    // Setup UI.
     self.highlightsViewController = [ReadmillHighlightsViewController new];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.highlightsViewController];
     
@@ -40,11 +41,16 @@
         [[UIApplication sharedApplication] openURL:url];
     }
     
+    // Override some appearances.
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0f], UITextAttributeFont, nil]];
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:1.0f forBarMetrics:UIBarMetricsDefault];
+    
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    // Check if we were redirected back to the app by Readmill OAuth.
     [ReadmillUser authenticateCallbackURL:url baseCallbackURL:self.redirectURL delegate:self apiConfiguration:[self apiConfiguration]];
     return YES;
 }
@@ -73,11 +79,14 @@
 
 - (void)readmillAuthenticationDidSucceedWithLoggedInUser:(ReadmillUser *)loggedInUser
 {
+    // Set the current user and load highlights.
     [ReadmillUser setCurrentUser:loggedInUser];
+    [self.highlightsViewController loadHighlights:self];
 }
 
 - (void)readmillAuthenticationDidFailWithError:(NSError *)authenticationError
 {
+    // Handle authentication error.
     if (authenticationError.code == 401) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:ReadmillHighlightsUserCredentialsKey];
         [[NSUserDefaults standardUserDefaults] synchronize];

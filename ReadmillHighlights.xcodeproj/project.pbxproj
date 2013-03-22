@@ -13,6 +13,7 @@
 		7320893316FBEA5900D1308C /* UIAlertView+ReadmillHighlights.m in Sources */ = {isa = PBXBuildFile; fileRef = 7320893216FBEA5900D1308C /* UIAlertView+ReadmillHighlights.m */; };
 		7320893716FBF1E100D1308C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7320893616FBF1E100D1308C /* QuartzCore.framework */; };
 		7320893C16FBFDC400D1308C /* ReadmillUser+ReadmillHighlights.m in Sources */ = {isa = PBXBuildFile; fileRef = 7320893B16FBFDC400D1308C /* ReadmillUser+ReadmillHighlights.m */; };
+		7320894316FC0A7F00D1308C /* ReadmillHighlightsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7320894216FC0A7F00D1308C /* ReadmillHighlightsViewCell.m */; };
 		73D5C23816FBBD2C006EB5A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D5C23716FBBD2C006EB5A5 /* UIKit.framework */; };
 		73D5C23A16FBBD2C006EB5A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D5C23916FBBD2C006EB5A5 /* Foundation.framework */; };
 		73D5C23C16FBBD2C006EB5A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D5C23B16FBBD2C006EB5A5 /* CoreGraphics.framework */; };
@@ -67,6 +68,8 @@
 		7320893616FBF1E100D1308C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7320893A16FBFDC400D1308C /* ReadmillUser+ReadmillHighlights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ReadmillUser+ReadmillHighlights.h"; path = "ReadmillHighlights/ReadmillUser+ReadmillHighlights.h"; sourceTree = SOURCE_ROOT; };
 		7320893B16FBFDC400D1308C /* ReadmillUser+ReadmillHighlights.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ReadmillUser+ReadmillHighlights.m"; path = "ReadmillHighlights/ReadmillUser+ReadmillHighlights.m"; sourceTree = SOURCE_ROOT; };
+		7320894116FC0A7F00D1308C /* ReadmillHighlightsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadmillHighlightsViewCell.h; path = ReadmillHighlights/ReadmillHighlightsViewCell.h; sourceTree = SOURCE_ROOT; };
+		7320894216FC0A7F00D1308C /* ReadmillHighlightsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReadmillHighlightsViewCell.m; path = ReadmillHighlights/ReadmillHighlightsViewCell.m; sourceTree = SOURCE_ROOT; };
 		73D5C23416FBBD2C006EB5A5 /* ReadmillHighlights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadmillHighlights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D5C23716FBBD2C006EB5A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		73D5C23916FBBD2C006EB5A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -117,6 +120,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		7320894B16FC43E500D1308C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7320894116FC0A7F00D1308C /* ReadmillHighlightsViewCell.h */,
+				7320894216FC0A7F00D1308C /* ReadmillHighlightsViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		73D5C22B16FBBD2C006EB5A5 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +166,7 @@
 				7320892F16FBE94800D1308C /* ReadmillHighlightsConfiguration.m */,
 				7320892616FBE64300D1308C /* ReadmillHighlightsAppDelegate.h */,
 				7320892716FBE64300D1308C /* ReadmillHighlightsAppDelegate.m */,
+				7320894B16FC43E500D1308C /* Views */,
 				7320893516FBF10200D1308C /* Controllers */,
 				7320893416FBF0F800D1308C /* Categories */,
 				73D5C23E16FBBD2C006EB5A5 /* Supporting Files */,
@@ -304,6 +317,7 @@
 				7320893016FBE94800D1308C /* ReadmillHighlightsConfiguration.m in Sources */,
 				7320893316FBEA5900D1308C /* UIAlertView+ReadmillHighlights.m in Sources */,
 				7320893C16FBFDC400D1308C /* ReadmillUser+ReadmillHighlights.m in Sources */,
+				7320894316FC0A7F00D1308C /* ReadmillHighlightsViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

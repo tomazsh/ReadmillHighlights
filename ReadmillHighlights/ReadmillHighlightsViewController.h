@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReadmillHighlightsViewController : UITableViewController
+/**
+ The ReadmillHighlightsViewController manages presentation of highlights list.
+ */
+@interface ReadmillHighlightsViewController : UITableViewController <ReadmillHighlightsFindingDelegate>
+
+///-------------------------
+/// @name Loading Highlights
+///-------------------------
+
+/**
+ Loads the first 100 highlights and displays them.
+ 
+ @param sender Object that initiated the load.
+ */
+- (void)loadHighlights:(id)sender;
 
 @end
