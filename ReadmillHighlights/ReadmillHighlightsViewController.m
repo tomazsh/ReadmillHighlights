@@ -7,20 +7,11 @@
 //
 
 #import "ReadmillHighlightsViewController.h"
+#import "ReadmillHighlightViewController.h"
 #import "ReadmillHighlightsViewCell.h"
 #import "ReadmillUser+ReadmillHighlights.h"
 #import "UIAlertView+ReadmillHighlights.h"
-
-/**
- This is really not production code, but it works for a demonstration purposes.
- */
-NSString * ReadmillHighlightsPluralizedString(NSString *singularFormat, NSString *pluralFormat, NSUInteger count) {
-    if (count < 2) {
-        return [NSString stringWithFormat:singularFormat, count];
-    } else {
-        return [NSString stringWithFormat:pluralFormat, count];
-    }
-}
+#import "NSString+ReadmillHighlights.h"
 
 @interface ReadmillHighlightsViewController ()
 
@@ -45,7 +36,6 @@ NSString * ReadmillHighlightsPluralizedString(NSString *singularFormat, NSString
     self.tableView.rowHeight = 111.0f;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadHighlights:)];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 #pragma mark -
@@ -93,10 +83,10 @@ NSString * ReadmillHighlightsPluralizedString(NSString *singularFormat, NSString
     
     NSMutableString *detailText = [[NSMutableString alloc] initWithString:[DateFormatter stringFromDate:highlight.highlightedAt]];
     if (highlight.likesCount) {
-        [detailText appendString:ReadmillHighlightsPluralizedString(@" ・ %d like", @" ・ %d likes", highlight.likesCount)];
+        [detailText appendString:[NSString stringWithEmptyFormat:NSLocalizedString(@"No likes", nil) singularFormat:NSLocalizedString(@" ・ %d like", nil) pluralFormat:NSLocalizedString(@" ・ %d likes", nil) count:highlight.likesCount]];
     }
     if (highlight.commentsCount) {
-        [detailText appendString:ReadmillHighlightsPluralizedString(@" ・ %d comment", @" ・ %d comments", highlight.commentsCount)];
+        [detailText appendString:[NSString stringWithEmptyFormat:NSLocalizedString(@"No comments", nil) singularFormat:NSLocalizedString(@" ・ %d comment", nil) pluralFormat:NSLocalizedString(@" ・ %d comments", nil) count:highlight.commentsCount]];
     }
     
     cell.detailTextLabel.text = [detailText uppercaseString];
@@ -116,7 +106,9 @@ NSString * ReadmillHighlightsPluralizedString(NSString *singularFormat, NSString
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    ReadmillHighlightViewController *controller = [ReadmillHighlightViewController new];
+    controller.highlight = [self.highlights objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 /*- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -149,8 +141,6 @@ NSString * ReadmillHighlightsPluralizedString(NSString *singularFormat, NSString
 
 - (void)readmillUser:(ReadmillUser *)user didFindHighlights:(NSArray *)highlights fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate
 {
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-
     [self.highlights addObjectsFromArray:highlights];
     [self.highlights sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"highlightedAt" ascending:NO]]];
     [self.tableView reloadData];
@@ -158,8 +148,6 @@ NSString * ReadmillHighlightsPluralizedString(NSString *singularFormat, NSString
 
 - (void)readmillUser:(ReadmillUser *)user failedToFindHighlightsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate withError:(NSError *)error
 {
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-
     [UIAlertView showError:error withTitle:NSLocalizedString(@"Error Finding Highlights", nil) cancelButtonTitle:NSLocalizedString(@"OK", nil)];
 }
 

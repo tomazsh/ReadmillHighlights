@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- The ReadmillHighlightsViewController manages presentation of highlights list.
+ The `ReadmillHighlightsViewController` manages presentation of highlights list.
  */
 @interface ReadmillHighlightsViewController : UITableViewController <ReadmillHighlightsFindingDelegate>
 
