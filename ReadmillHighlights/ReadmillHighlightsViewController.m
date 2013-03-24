@@ -20,6 +20,11 @@
  */
 @property(nonatomic) NSMutableArray *highlights;
 
+/**
+ Pull to refresh view.
+ */
+@property(nonatomic) SSPullToRefreshView *pullToRefresh;
+
 @end
 
 @implementation ReadmillHighlightsViewController
@@ -35,7 +40,18 @@
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.rowHeight = 111.0f;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadHighlights:)];
+    SSPullToRefreshSimpleContentView *contentView = [SSPullToRefreshSimpleContentView new];
+    contentView.statusLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15.0f];
+    
+    self.pullToRefresh = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView delegate:self];
+    self.pullToRefresh.contentView = contentView;
+    [self.pullToRefresh startLoadingAndExpand:YES animated:YES];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    self.pullToRefresh = nil;
 }
 
 #pragma mark -
@@ -45,8 +61,6 @@
 {
     if (!self.highlights) {
         self.highlights = [NSMutableArray array];
-    } else {
-        [self.highlights removeAllObjects];
     }
     [[ReadmillUser currentUser] findHighlightsWithCount:100 fromDate:nil toDate:nil delegate:self];
 }
@@ -141,6 +155,8 @@
 
 - (void)readmillUser:(ReadmillUser *)user didFindHighlights:(NSArray *)highlights fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate
 {
+    [self.pullToRefresh finishLoading];
+    [self.highlights removeAllObjects];
     [self.highlights addObjectsFromArray:highlights];
     [self.highlights sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"highlightedAt" ascending:NO]]];
     [self.tableView reloadData];
@@ -148,7 +164,16 @@
 
 - (void)readmillUser:(ReadmillUser *)user failedToFindHighlightsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate withError:(NSError *)error
 {
+    [self.pullToRefresh finishLoading];
     [UIAlertView showError:error withTitle:NSLocalizedString(@"Error Finding Highlights", nil) cancelButtonTitle:NSLocalizedString(@"OK", nil)];
+}
+
+#pragma mark -
+#pragma mark SSPullToRefreshViewDelegate
+
+- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view
+{
+    [self loadHighlights:view];
 }
 
 @end

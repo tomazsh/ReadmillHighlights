@@ -1,3 +1,6 @@
 [submodule "Vendor/Readmill"]
 	path = Vendor/Readmill
 	url = https://github.com/tomazsh/ios-wrapper.git
+[submodule "Vendor/SSPullToRefresh"]
+	path = Vendor/SSPullToRefresh
+	url = https://github.com/soffes/sspulltorefresh.git

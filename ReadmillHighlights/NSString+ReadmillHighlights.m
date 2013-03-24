@@ -10,6 +10,9 @@
 
 @implementation NSString (ReadmillHighlights)
 
+#pragma mark -
+#pragma mark Class Methods
+
 + (NSString *)stringWithEmptyFormat:(NSString *)emptyFormat singularFormat:(NSString *)singularFormat pluralFormat:(NSString *)pluralFormat count:(NSUInteger)count
 {
     switch (count) {

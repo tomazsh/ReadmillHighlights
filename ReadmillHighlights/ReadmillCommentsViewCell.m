@@ -15,7 +15,7 @@ CGFloat const ReadmillCommentsViewCellContentSpacing = 8.0f;
 @interface ReadmillCommentsViewCell ()
 
 /**
- Initialized the highlights cell.
+ Initializes the comments cell.
  */
 - (void)initializeReadmillCommentsViewCell;
 

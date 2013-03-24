@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SSPullToRefresh.h"
 
 /**
  Inset of the highlight's content.
@@ -16,7 +17,7 @@ extern UIEdgeInsets const ReadmillHighlightViewControllerHighlightContentInset;
 /**
  The `ReadmillHighlightViewController` manages presentation of a single highlight and its comments.
  */
-@interface ReadmillHighlightViewController : UITableViewController <ReadmillCommentsFindingDelegate>
+@interface ReadmillHighlightViewController : UITableViewController <ReadmillCommentsFindingDelegate, ReadmillHighlightUpdateDelegate, SSPullToRefreshViewDelegate>
 
 @property(nonatomic) ReadmillHighlight *highlight;
 

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SSPullToRefresh.h"
 
 /**
  The `ReadmillHighlightsViewController` manages presentation of highlights list.
  */
-@interface ReadmillHighlightsViewController : UITableViewController <ReadmillHighlightsFindingDelegate>
+@interface ReadmillHighlightsViewController : UITableViewController <ReadmillHighlightsFindingDelegate, SSPullToRefreshViewDelegate>
 
 ///-------------------------
 /// @name Loading Highlights

@@ -42,8 +42,16 @@
     }
     
     // Override some appearances.
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0f], UITextAttributeFont, nil]];
+    NSMutableDictionary *titleTextAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0f], UITextAttributeFont, [UIColor colorWithWhite:0.4f alpha:1.0f], UITextAttributeTextColor, [UIColor colorWithWhite:1.0f alpha:0.25f], UITextAttributeTextShadowColor, [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset, nil];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:0.75f alpha:1.0f]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[titleTextAttributes copy]];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:1.0f forBarMetrics:UIBarMetricsDefault];
+    
+    [titleTextAttributes setValue:[UIFont fontWithName:@"HelveticaNeue-Medium" size:12.0f] forKey:UITextAttributeFont];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[titleTextAttributes copy] forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[titleTextAttributes copy] forState:UIControlStateHighlighted];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[titleTextAttributes copy] forState:UIControlStateDisabled];
     
     return YES;
 }

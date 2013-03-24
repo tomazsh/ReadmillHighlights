@@ -15,6 +15,10 @@ typedef void(^ReadmillHighlightsNetworkImageCompletionHandler)(NSURLResponse *, 
 
 @interface UIImageView (ReadmillHighlights)
 
+///----------------------------------
+/// @name Loading Images from Network
+///----------------------------------
+
 /**
  Sets an image to the receiver for a specified network URL.
  
