@@ -279,7 +279,7 @@ UIEdgeInsets const ReadmillHighlightViewControllerHighlightContentInset = { 16.0
 
 - (void)readmillHighlightUpdateDidFailWithHighlight:(ReadmillHighlight *)highlight error:(NSError *)error
 {
-    [UIAlertView showError:error withTitle:NSLocalizedString(@"Error Finding Comments", nil) cancelButtonTitle:NSLocalizedString(@"OK", nil)];
+    [UIAlertView showError:error withTitle:NSLocalizedString(@"Error Updating Highlight", nil) cancelButtonTitle:NSLocalizedString(@"OK", nil)];
 }
 
 #pragma mark -
